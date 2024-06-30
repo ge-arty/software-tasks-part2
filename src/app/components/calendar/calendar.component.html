@@ -1,0 +1,25 @@
+<div class="calendar">
+  <div class="header">
+    <span>{{ currentYear }} - {{ currentMonth + 1 }}</span>
+  </div>
+  <div class="weekdays">
+    <div *ngFor="let weekday of weekdays">{{ weekday }}</div>
+  </div>
+  <div class="days">
+    <div *ngFor="let empty of [].constructor(firstDayIndex)"></div>
+    <div
+      *ngFor="let day of daysInMonth"
+      [ngClass]="{
+        today: day === currentDate,
+        weekend:
+          (firstDayIndex + day - 1) % 7 === 0 ||
+          (firstDayIndex + day) % 7 === 0,
+        weekday: !(
+          (firstDayIndex + day - 1) % 7 === 0 || (firstDayIndex + day) % 7 === 0
+        )
+      }"
+    >
+      {{ day }}
+    </div>
+  </div>
+</div>
